@@ -1,0 +1,4 @@
+gateway/logs/
+manager/logs/
+mysql/data/
+redis/data/

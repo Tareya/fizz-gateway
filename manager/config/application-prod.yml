@@ -1,0 +1,83 @@
+# if you do not use Nacos, ignore the follow config
+######################### Nacos config start ######################################
+nacos:
+  discovery:
+    # if use Nacos discovery set this flag to true
+    enabled: true
+    # need replace
+    server-addr: nacos.turboradio.cn:80
+    username: nacos
+    password: 0UQwQqyMvk2TSiwR
+    # need replace
+    namespace: public
+    register:
+      group-name: fizz-gateway
+######################### Nacos config end #######################################
+
+
+# if you do not use Eureka, ignore the follow config
+######################### Eureka config start ####################################
+eureka:
+  client:
+    # if use Eureka set this flag to true
+    enabled: false
+    serviceUrl:
+      # need replace
+      defaultZone: http://localhost:6600/eureka/
+######################### Eureka config end ######################################
+
+spring:
+  datasource:
+    # 数据库连接
+    url: jdbc:mysql://localhost:3306/fizz_manager?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true
+    # 数据库用户名
+    username: root
+    # 数据库密码
+    password: root123456
+  mail:
+    # 邮箱host
+    host: mail.localhost.com
+    # 邮箱用户名
+    username: fizz-gateway
+    # 邮箱密码
+    password: 123456
+    # 邮箱port
+    port: 25
+    properties:
+      # 邮箱发送人地址
+      from: fizz-gateway@localhost.com
+      mail:
+        smtp:
+          # 使用鉴权
+          auth: true
+          ssl:
+            # 不开启SSL
+            enable: false
+          # 超时时间
+          timeout: 30000
+  redis:
+    # redis配置
+    database: 9
+    host: localhost
+    password: 123456
+    port: 6379
+    ssl: false
+  servlet:
+    multipart:
+      # 上传文件临时目录
+      location: /data/webapps/fizz-manager-professional/logs
+params:
+  # fizz-gateway地址列表，当不使用注册中心时可配置该参数，网关缓存功能会读取该列表显示
+  gateway-urls: http://localhost:8600,http://localhost:8600,http://localhost:8600
+  aggregate:
+    test:
+      # fizz-gateway地址，聚合接口测试页面使用该地址发送请求
+      gateway-url: http://localhost:8600
+  # fizz-manager地址
+  fizz-manager-url: http://localhost:8000/
+  # 网关日志保存天数，网关保存日志量影响页面查询速度，可根据实际情况调整该参数
+  fizz-log-save-days: 2
+
+gateway:
+  # 自定义网关前缀, 默认值为/proxy
+  prefix: /proxy
