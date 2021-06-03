@@ -13,9 +13,6 @@ services:
         - "${MYSQL_DIR}/config/my.cnf:/etc/my.cnf"
         - "${MYSQL_DIR}/data:/var/lib/mysql"
         - "${MYSQL_DIR}/init:/docker-entrypoint-initdb.d"
-      # links:
-      #   - manager
-      #   - gateway
       environment:
         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
         MYSQL_ROOT_HOST: ${MYSQL_ROOT_HOST}
@@ -39,9 +36,6 @@ services:
       volumes:
         - "${REDIS_DIR}/config/redis.conf:/usr/local/etc/redis/redis.conf"
         - "${REDIS_DIR}/data:/data"
-      # links:
-      #   - manager
-      #   - gateway
       environment: 
         TZ: ${TIME_ZONE}
       command:
